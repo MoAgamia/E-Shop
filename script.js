@@ -160,26 +160,46 @@ function update_total()
 // Pop-up login
 
 $(document).ready(function(){
-  $("form").fadeOut(0);
 
-      $(".signInbt").mouseenter(function(){
-          $("form").fadeIn();
-      });
+	$("form").fadeOut(0);
 
-      $(".signInbt").click(function(){
+	$(".signInbt").click(function showForm(){
+						$("form").fadeIn();
+	});
+	$(".hide").click(function hideForm(){
+						$("form").fadeOut();
+	});
 
-              $("form").fadeOut();
-
-          });
-      });
-$(document).click(function(event) {
-      if((!$(event.target).hasClass('.form'))){
-            $("form").fadeOut();
-}
-});
+		});
 
 
 /*
+
+
+$(".signInbt").click(function signInbt1(){
+				if(x1==1){
+					x1=0;
+					$("form").fadeIn();
+				}
+				  });
+$(".signInbt").click(function signInbt2(){
+
+				if(x1==0){
+					x1=1;
+					$("form").fadeOut();
+				}
+
+      });
+			  });
+
+
+
+
+$(document).click(function(event) {
+if((!$(event.target).hasClass('.form'))){
+			$("form").fadeOut();
+}
+});
     $("signInbt").fadeOut(0);
     $(".registerbt").click(function(){
           if(x==1){

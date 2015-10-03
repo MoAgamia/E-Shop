@@ -18,7 +18,10 @@ if(isset($_POST['submit']))
 	else
 	{
 		?>
-        <script>alert('wrong details');</script>
+        <script>
+				alert('wrong details');
+				window.location.href = "Homepage.php";
+				</script>
         <?php
 	}
 
@@ -84,7 +87,7 @@ if(isset($_POST['submit']))
 	<div id="login-form">
 	<form class="form" method="post">
 
-	    <p class="clearfix">
+		  <p class="clearfix">
 	        <label for="login">Email</label>
 	        <input type="text2" name="email" placeholder="User Email">
 	    </p>
@@ -104,6 +107,10 @@ if(isset($_POST['submit']))
 	      <button type="button" name="button">Sign Up</button>
       </a>
 	    </p>
+			<p>
+				<input type="image" class="hide" src="images/up.png" />
+			</p>
+
 
 	</form>
 </div>

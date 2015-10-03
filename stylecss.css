@@ -820,3 +820,11 @@ border: 0px;
 .no-pointerevents .form p:nth-child(1):before {
     display: none;
 }
+
+.hide{
+	position: absolute;
+	top:0%;
+	left:43%;
+	width: 40px;
+	height:40px;
+}
