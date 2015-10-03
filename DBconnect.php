@@ -3,8 +3,8 @@
 /* Database config */
 
 $db_host		= 'localhost';
-$db_user		= 'root';
-$db_pass		= 'mo141592';
+$db_user		= 'user';
+$db_pass		= 'password';
 $db_database	= 'Eshop';
 
 /* End config */
