@@ -11,8 +11,8 @@ if(!isset($_SESSION['user']))
 }
 
 
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$userRow=mysql_fetch_array($res);
+$res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$userRow=mysqli_fetch_array($res);
 $hist=$userRow['history'];
 
 if(!$_POST)
@@ -72,10 +72,10 @@ if(!$_POST)
 					$cnt[$key]=$value;
 				}
 
-				$result = mysql_query("SELECT * FROM Shop WHERE id IN(".join($products,',').")");
-				$result2 = mysql_query("SELECT * FROM Shop WHERE id IN(".join($products,',').")");
+				$result = mysqli_query($connection,"SELECT * FROM Shop WHERE id IN(".join($products,',').")");
+				$result2 = mysqli_query($connection,"SELECT * FROM Shop WHERE id IN(".join($products,',').")");
 
-				if(!mysql_num_rows($result))
+				if(!mysqli_num_rows($result))
 				{
 					echo '<h1>There was an error with your order!</h1>';
 				}
@@ -83,14 +83,14 @@ if(!$_POST)
 				{
 					echo '<h1>You Bought:</h1>';
 
-					while($row=mysql_fetch_assoc($result))
+					while($row=mysqli_fetch_assoc($result))
 					{
 						echo '<h2>'.$cnt[$row['id']].' x '.$row['name'].'</h2>';
 
 						// Calculate quantity
 						$newquan=$row['quantity'] - $cnt[$row['id']];
 						// Add quantity to database
-            mysql_query("UPDATE Shop SET quantity='$newquan' WHERE id=".$row['id']);
+            mysqli_query($connection,"UPDATE Shop SET quantity='$newquan' WHERE id=".$row['id']);
 						// Caclulate user history
 						$hist.=(string)$cnt[$row['id']] .' x '. (string)$row['name'] . ',';
 
@@ -102,7 +102,7 @@ if(!$_POST)
 					// Caclulate user history
 					$hist.="$" . (string)$total . ',';
 
-					mysql_query("UPDATE users SET history='$hist' WHERE user_id=".$_SESSION['user']);
+					mysqli_query($connection,"UPDATE users SET history='$hist' WHERE user_id=".$_SESSION['user']);
 				}
 
 

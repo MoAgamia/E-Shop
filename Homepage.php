@@ -5,10 +5,10 @@ require 'DBconnect.php';
 
 if(isset($_POST['submit']))
 {
-	$email = mysql_real_escape_string($_POST['email']);
-	$upass = mysql_real_escape_string($_POST['pass']);
-	$res=mysql_query("SELECT * FROM users WHERE email='$email'");
-	$row=mysql_fetch_array($res);
+	$email = mysqli_real_escape_string($connection,$_POST['email']);
+	$upass = mysqli_real_escape_string($connection,$_POST['pass']);
+	$res=mysqli_query($connection,"SELECT * FROM users WHERE email='$email'");
+	$row=mysqli_fetch_array($res);
 
 	if($row['password']==md5($upass))
 	{
@@ -67,8 +67,8 @@ if(isset($_POST['submit']))
 	          <?php
 	          if(isset($_SESSION['user']))
 	          {
-	            $res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-	            $userRow=mysql_fetch_array($res);
+	            $res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+	            $userRow=mysqli_fetch_array($res);
 							echo '<img src="'.$userRow['imgage'].'" align="left" style="margin-top:-15px; margin-right:10px;" >';
 							echo '  Hi  ';
 	            echo $userRow['username'];
@@ -134,8 +134,8 @@ if(isset($_POST['submit']))
 
                 <?php
 
-				$result = mysql_query("SELECT * FROM Shop");
-				while($row=mysql_fetch_assoc($result))
+				$result = mysqli_query($connection,"SELECT * FROM Shop");
+				while($row=mysqli_fetch_assoc($result))
 				{
 					echo '<div class="product"><img src="images/products/'.$row['imgage'].'" alt="'.htmlspecialchars($row['name']).'" width="128" height="128" class="pngfix" /></div>';
 				}

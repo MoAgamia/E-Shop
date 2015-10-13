@@ -5,8 +5,8 @@ require "../DBconnect.php";
 
 if(!$_POST['img']) die("There is no such product!");
 
-$img=mysql_real_escape_string(end(explode('/',$_POST['img'])));
-$row=mysql_fetch_assoc(mysql_query("SELECT * FROM Shop WHERE imgage='".$img."'"));
+$img=mysqli_real_escape_string($connection,end(explode('/',$_POST['img'])));
+$row=mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM Shop WHERE imgage='".$img."'"));
 $quantity=$row['quantity'];
 if($quantity==0) die("This product if out of stock!");
 

@@ -7,24 +7,24 @@ if(!isset($_SESSION['user']))
 {
 	header("Location: Login.php");
 }
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$row=mysql_fetch_array($res);
+$res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$row=mysqli_fetch_array($res);
 
 
 if(isset($_POST['btn-login']))
 {
-  $username = mysql_real_escape_string($_POST['username']);
-	$userlname = mysql_real_escape_string($_POST['userlname']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$upass = mysql_real_escape_string($_POST['pass']);
-  $unewpass = md5(mysql_real_escape_string($_POST['newpass']));
-  $uconfnewpass = md5(mysql_real_escape_string($_POST['confnewpass']));
+  $username = mysqli_real_escape_string($connection,$_POST['username']);
+	$userlname = mysqli_real_escape_string($connection,$_POST['userlname']);
+	$email = mysqli_real_escape_string($connection,$_POST['email']);
+	$upass = mysqli_real_escape_string($connection,$_POST['pass']);
+  $unewpass = md5(mysqli_real_escape_string($connection,$_POST['newpass']));
+  $uconfnewpass = md5(mysqli_real_escape_string($connection,$_POST['confnewpass']));
 
 	if($row['password']==md5($upass))
 	{
     if($unewpass==$uconfnewpass){
 
-      if(mysql_query("UPDATE users SET username='$username', email='$email', userlastname='$userlname',password='$unewpass' WHERE user_id=".$_SESSION['user']))
+      if(mysqli_query($connection,"UPDATE users SET username='$username', email='$email', userlastname='$userlname',password='$unewpass' WHERE user_id=".$_SESSION['user']))
       {
 
         ?>
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_FILES['image'])) {
 			echo "<img class='img' src='{$image}' /><br /><br />";
 		}
 		else {
-			mysql_query("UPDATE users SET imgage='$image' WHERE user_id=".$_SESSION['user']);
+			mysqli_query($connection,"UPDATE users SET imgage='$image' WHERE user_id=".$_SESSION['user']);
 		}
 		}
 	}

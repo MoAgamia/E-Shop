@@ -11,14 +11,14 @@ if(isset($_SESSION['user'])!="")
 
 if(isset($_POST['btn-signup']))
 {
-	$uname = mysql_real_escape_string($_POST['uname']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$upass = md5(mysql_real_escape_string($_POST['pass']));
+	$uname = mysqli_real_escape_string($connection,$_POST['uname']);
+	$email = mysqli_real_escape_string($connection,$_POST['email']);
+	$upass = md5(mysqli_real_escape_string($connection,$_POST['pass']));
 
-	if(mysql_query("INSERT INTO users(username,email,password) VALUES('$uname','$email','$upass')"))
+	if(mysqli_query($connection,"INSERT INTO users(username,email,password) VALUES('$uname','$email','$upass')"))
 	{
-		$res=mysql_query("SELECT * FROM users WHERE email='$email'");
-		$row=mysql_fetch_array($res);
+		$res=mysqli_query($connection,"SELECT * FROM users WHERE email='$email'");
+		$row=mysqli_fetch_array($res);
 		$_SESSION['user'] = $row['user_id'];
 		header("Location: Homepage.php");
 		?>

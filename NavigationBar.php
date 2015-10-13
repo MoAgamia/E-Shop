@@ -8,8 +8,8 @@
           <?php
           if(isset($_SESSION['user']))
           {
-            $res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-            $userRow=mysql_fetch_array($res);
+            $res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+            $userRow=mysqli_fetch_array($res);
             echo '<img src="'.$userRow['imgage'].'" align="left" style="margin-top:-15px; margin-right:10px;" >';
           echo ' Hi ';
             echo $userRow['username'];

@@ -10,8 +10,8 @@ if(!isset($_SESSION['user']))
 	die("You are not logged in!");
 }
 
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$userRow=mysql_fetch_array($res);
+$res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$userRow=mysqli_fetch_array($res);
 
 ?>
 

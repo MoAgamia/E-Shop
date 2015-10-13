@@ -4,8 +4,8 @@ if(!isset($_SESSION['user']))
 {
 	header("Location: Login.php");
 }
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$row=mysql_fetch_array($res);
+$res=mysqli_query($connection,"SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$row=mysqli_fetch_array($res);
 
 function resize($width, $height){
 	/* Get original image x y*/
@@ -42,7 +42,7 @@ function resize($width, $height){
 			exit;
 			break;
 	}
-	
+
 	return $path;
 	/* cleanup memory */
 	imagedestroy($image);
